@@ -13,6 +13,8 @@ pg8000 = "*"
 requests = "*"
 flask-marshmallow = "*"
 flask-jsonpify = "*"
+pipfile = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.7"

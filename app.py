@@ -2,7 +2,9 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_jsonpify import jsonify
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+cors = CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+pg8000://postgres:abulgLJn9Cexrjvo@127.0.0.1:3306'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
@@ -39,6 +41,7 @@ invoices_schema = InvoiceSchema(many=True)
 
 # Create an Invoice
 @app.route('/invoice', methods=['POST'])
+@cross_origin()
 def add_invoice():
     contractor = request.json['contractor']
     invoice_amount = request.json['invoice_amount']
@@ -52,6 +55,7 @@ def add_invoice():
 
 # Get all Invoices
 @app.route('/invoice', methods=['GET'])
+@cross_origin()
 def get_invoices():
     all_invoices = Invoice.query.all()
     result = invoices_schema.dump(all_invoices)
