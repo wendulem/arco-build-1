@@ -29,7 +29,6 @@ class Invoice(db.Model):
 
 # Invoices Schema
 
-
 class InvoiceSchema(ma.Schema):
     class Meta:
         fields = ('id', 'contractor', 'invoice_amount')
@@ -52,6 +51,19 @@ def add_invoice():
     db.session.commit()
 
     return invoice_schema.jsonify(new_invoice)
+
+# Delete an Invoice
+@app.route('/invoice', methods=['DELETE'])
+@cross_origin()
+def delete_invoice():
+    id = request.json['id']
+
+    del_invoice = Invoice.query.filter_by(id=id).one()
+
+    db.session.delete(del_invoice)
+    db.session.commit()
+
+    return invoice_schema.jsonify(del_invoice)
 
 # Get all Invoices
 @app.route('/invoice', methods=['GET'])
