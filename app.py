@@ -69,5 +69,9 @@ def get_invoices():
     result = invoices_schema.dump(all_invoices)
     return jsonify(result)
 
+@app.route('/', methods=['GET'])
+def hello():
+    return jsonify('Hello')
+
 if __name__ == '__main__':
     app.run()
