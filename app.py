@@ -6,17 +6,14 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+pg8000://postgres:J4sB%P8bwA@/postgres?unix_sock=/cloudsql/arco-test-build-278203:us-east4:arco-build-1'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+pg8000://postgres:J4sB%P8bwA@/postgres?unix_sock=/cloudsql/arco-test-build-278203:us-east4:arco-build-1/.s.PGSQL.5432'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 app.debug = True
 
 db = SQLAlchemy(app)
-
 ma = Marshmallow(app)
 
 # Invoices Class / Model
-
-
 class Invoice(db.Model):
     __tablename__ = 'invoice'
     id = db.Column(db.Integer, primary_key=True)
@@ -28,7 +25,6 @@ class Invoice(db.Model):
         self.invoice_amount = invoice_amount
 
 # Invoices Schema
-
 class InvoiceSchema(ma.Schema):
     class Meta:
         fields = ('id', 'contractor', 'invoice_amount')
