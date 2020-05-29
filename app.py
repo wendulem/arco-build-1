@@ -6,7 +6,7 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres+pg8000://postgres:J4sB%P8bwA@/postgres?unix_sock=/cloudsql/arco-test-build-278203:us-east4:arco-build-1/.s.PGSQL.5432'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://oisjwomylfphyf:5ffdc070cad36ff04deb316422da1e3919fa137b57002e822b27d8a4c4c3b501@ec2-52-202-22-140.compute-1.amazonaws.com:5432/d651grjqpb9opo'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 app.debug = True
 
